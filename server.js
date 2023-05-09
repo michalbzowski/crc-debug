@@ -19,11 +19,12 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-app.use(function(req, res, next) {
-  console.log("Preprocessing")
-  next();
-  console.log("Postprocessing")
-});
+
+// app.use(function(req, res, next) {
+//   console.log("Preprocessing")
+//   next();
+//   console.log("Postprocessing")
+// });
 
 app.get("/", (req, res) => {
   res.send("OK");
@@ -102,6 +103,8 @@ app.get('/trainings', (req, res) => {
 });
 
 // Endpoint do odczytu pojedynczego szkolenia
+//curl -X GET http://localhost:8080/trainings/:id -H "Content-Type: application/json"
+
 app.get('/trainings/:id', (req, res) => {
   const id = req.params.id;
   const training = trainings.find(id);
@@ -147,11 +150,12 @@ app.put('/trainings/:id', (req, res) => {
 });
 
 // Endpoint do usuwania szkolenia
+//curl -X DELETE  http://localhost:8080/trainings/1683631704815
 app.delete('/trainings/:id', (req, res) => {
   const id = req.params.id;
   const index = trainings.delete(id);
-  if (index === -1) {
-    res.status(404).json({ message: 'Szkolenie o podanym ID nie zostało znalezione.' });
+  if (index = -1) {
+    res.status(404).json({ message: 'Szkolenie o podanym ID nie zostało znalezione.\n' });
   } else {
     res.status(204).json({ message: 'Usunięto pomyślnie.' });
   }

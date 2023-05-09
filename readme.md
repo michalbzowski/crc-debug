@@ -1,6 +1,5 @@
 To run app
 npm install
-npm install -g ts-node
 npm install -g typescript
 tsc
 npm run start
@@ -18,4 +17,5 @@ Aplikacja umożliwia zarządzanie bazą szkoleń oraz użytkowników.
     - Instruktor to Imię i Nazwisko instruktora
     - Poziom szkolenia: Dwie dopuszczalne wartości BASIC, ADVANCED
 6. Jeden instruktor nie może prowadzić dwóch szkoleń w tym samym dniu.
-7. Nie może istnieć szkolene ADVANCED, jeśli nie było wcześniej stworzonego szkolenia BASIC
+7. Nie może istnieć szkolene ADVANCED, jeśli nie było wcześniej stworzonego szkolenia BASIC. Inaczej mówiąc, szkolenie ADVANCED moze istnieć tylko gdy istnieje szkolenie BASIC o tej samiej nazwi
+8. Szkolenie o jednej nazwie na jednym poziomie moze istnieć tylko raz

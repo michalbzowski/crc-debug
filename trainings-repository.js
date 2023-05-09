@@ -9,6 +9,7 @@ export class InMemoryTrainingsRepository {
         return this.trainings.find(training => training.id === id);
     }
     push(training) {
+        hasUniqueNameAndLevel(training.name, training.level, this.trainings);
         hasTrainingDateHasRRRRMMDD(training.date);
         hasTrainingLevel(training.level);
         hasTrainerOnlyOneTrainingPerDay(training.date, training.instructor, this.trainings);
@@ -56,8 +57,16 @@ function hasAdvancedTrainingBasicPrecedesor(name, level, trainings) {
         let found = trainings.findIndex(t => {
             return t.name === name && t.level === "BASIC";
         });
-        if(found) {
-            throw new Error("Kot")
+        if (found) {
+            throw new Error("Nie znaleziono szkolenia na poziomie BASIC. Dodaj najpierws szkolenie na poziomie BASIC");
         }
+    }
+}
+function hasUniqueNameAndLevel(name, level, trainings) {
+    let found = trainings.findIndex(t => {
+        return t.name === name && t.level === level;
+    });
+    if (found >= 0) {
+        throw new Error("Nie moze istniec szkolenie, ktore ma ta sama nazwe i poziom");
     }
 }
